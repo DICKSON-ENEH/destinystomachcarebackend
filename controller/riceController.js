@@ -31,7 +31,7 @@ const getOneUser= async(req, res)=>{
     const updateOne = async (req, res) => {
         try {
             const Id = req.params.Id
-            const {productName, productBrand, description, price} = req.body
+            const {productName,  description, price} = req.body
             // const cloudImage= await cloudinary.uploader.destroy(req.file.path)
             const cloudImages= await cloudinary.uploader.upload(req.file.path)
 
@@ -56,22 +56,24 @@ const getOneUser= async(req, res)=>{
     const createOne = async (req, res) => {
         try {
             const Id = req.params.id
-            const {productName, productBrand, description, price} = req.body
+            const {productName,  description, price} = req.body
             const user =  await userModel.findById(Id)
             // res.status(200).json({show: user})
             if(user.isAdmin){
                
                 const cloudImage= await cloudinary.uploader.upload(req.file.path)
-              const users = await userModel.findById(req.params.id)
+            //   const users = await userModel.findById(req.params.Id)
+              const users = await userModel.findById(Id)
+              
               const content = new riceModel({
                 productName,
-                 productBrand, 
-                 description,
+                   
+                 description, 
                   price  ,
                   image:cloudImage.secure_url,
-                  imageID:cloudImage.public_id       
+                  imageID:cloudImage.public_id        
               })
-              users.items.push(content)
+              users.items.push(content) 
               users.save()
               content.user = users
               content.save()
@@ -82,7 +84,7 @@ const getOneUser= async(req, res)=>{
                 })
             }else{
                 res.status(404).json({
-                   status:"ytou cannot carry out this operation"
+                   status:"you cannot carry out this operation"
                 })
             }
            

@@ -4,7 +4,7 @@ const {
     getOnewatch,
     updateOne,
     createOne,
-    deletePost
+    deletePost 
 	 
 } = require("../controller/friesController");
 const verification =require("../controller/authorize")
