@@ -13,7 +13,7 @@ const router = express.Router()
    
 router.route("/:id/create").post(verification,imageUpload, createOne);
  
-router.route("/:id/").get(verification,getAllUsers); 
+router.route("/:id/getall").get(verification,getAllUsers); 
 
 
 router.route("/:id/getone/:Id").get(verification, getOneUser).patch(verification,imageUpload, updateOne).delete(verification, deletePost);
