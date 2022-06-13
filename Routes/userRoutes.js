@@ -16,7 +16,7 @@ const router = express.Router()
    
 router.route("/register").post(upload, createUser);
 router.route("/:id/:token").get(verifyUser);
-router.route("/").get(getAllUsers);
+router.route("/getall").get(getAllUsers);
 router.route("/admin/:id/:token").post(verifyAdmin);
 router.route("/registerAdmin").post(upload, createAdmin);
 router.route("/:id").get(getSingleUser).patch(editSingleUser);
